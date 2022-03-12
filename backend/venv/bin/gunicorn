@@ -1,0 +1,10 @@
+#!/bin/sh
+'''exec' "/Users/osvaldo/OneDrive/Documents/[Main]/Github Projects/semester-project-team-16-unreachables/backend/venv/bin/python3.9" "$0" "$@"
+' '''
+# -*- coding: utf-8 -*-
+import re
+import sys
+from gunicorn.app.wsgiapp import run
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(run())
