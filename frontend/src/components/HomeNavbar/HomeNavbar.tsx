@@ -10,9 +10,9 @@ function HomeNavbar() {
     const isEmployee = false; //placeholder for when we do employee authentication
     let title;
     if (isEmployee){
-        title = <Navbar.Brand href="#home">Outage Tracker - Employee</Navbar.Brand>
+        title = <Navbar.Brand href="/">Outage Tracker - Employee</Navbar.Brand>
     } else{
-        title = <Navbar.Brand href="#home">Outage Tracker</Navbar.Brand>
+        title = <Navbar.Brand href="/">Outage Tracker</Navbar.Brand>
     }
     return (
         <Navbar bg="dark" expand="lg" variant="dark">
@@ -24,9 +24,10 @@ function HomeNavbar() {
                 <LoginButton />
                 <LogoutButton />
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#map">Outage Map</NavDropdown.Item>
-                    <NavDropdown.Item href="#table">Outage Table</NavDropdown.Item>
-                    <NavDropdown.Item href="#contact ">Contact Us</NavDropdown.Item>   
+                    <NavDropdown.Item href="/">Report Outage</NavDropdown.Item>
+                    <NavDropdown.Item href="/map">Outage Map</NavDropdown.Item>
+                    <NavDropdown.Item href="/table">Outage Table</NavDropdown.Item>
+                    <NavDropdown.Item href="/contact">Contact Us</NavDropdown.Item>   
                 </NavDropdown>
             </Nav>
             </Navbar.Collapse>
