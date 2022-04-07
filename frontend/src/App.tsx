@@ -4,6 +4,13 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateOutageReport from './components/createOutageReport/CreateOutageReport';
 import HomeNavbar from './components/HomeNavbar/HomeNavbar';
+import OutageReportTable from './components/OutageReportTable/OutageReportTable';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    BrowserRouter
+  } from "react-router-dom";
 
 function App() {
     const { isLoading } = useAuth0();
@@ -12,9 +19,16 @@ function App() {
     } else{
         return (
             <div className="App" >
+
                 <header className="App-header">
-                    <HomeNavbar />
-                    <CreateOutageReport />
+                <BrowserRouter>
+                <HomeNavbar />
+                    <Routes>
+                        <Route path='/' element={<CreateOutageReport />}/>
+                        <Route path='/table' element={<OutageReportTable />}/>
+                    </Routes>
+                    
+                </BrowserRouter>
                 </header>
             </div>
         );
