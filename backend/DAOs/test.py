@@ -1,5 +1,6 @@
-from utils.config import pg_config
 import psycopg2
+from utils.config import pg_config
+
 
 class TestDao:
     def __init__(self):
