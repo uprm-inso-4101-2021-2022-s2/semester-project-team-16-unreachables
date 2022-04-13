@@ -1,6 +1,6 @@
 from flask import jsonify
-from DAOs.services import ServiceDAO
-from utils.macros import *
+from DAOs import services
+from utils import macros
 
 class ServiceController:
     '''
@@ -42,42 +42,42 @@ class ServiceController:
 
     def get(self):
         try:
-            dao = ServiceDAO()
+            dao = services.ServiceDAO()
             usr_list = dao.get()
             result_list = []
             for row in usr_list:
                 obj = self.build_map_dic(row)
                 result_list.append(obj)
-            return jsonify(Services = result_list), OK
+            return jsonify(Services = result_list), macros.OK
         except:
-            return jsonify(SERVICE_ERROR), NOT_FOUND
+            return jsonify(macros.SERVICE_ERROR), macros.NOT_FOUND
 
 
     def get_by_id(self, id):
         try:
-            dao = ServiceDAO()
+            dao = services.ServiceDAO()
             query = dao.get_by_id(id)
             result = self.build_map_dic(query)
-            return jsonify(Service=result), OK
+            return jsonify(Service=result), macros.OK
         except:
-            return jsonify(SERVICE_DNE), NOT_FOUND
+            return jsonify(macros.SERVICE_DNE), macros.NOT_FOUND
     
     
     def get_by_cname(self, cname):
         try:
-            dao = ServiceDAO()
+            dao = services.ServiceDAO()
             query = dao.get_by_cname(cname)
             result = self.build_map_dic_company(query)
-            return jsonify(Service=result), OK
+            return jsonify(Service=result), macros.OK
         except:
-            return jsonify(COMPANY_DNE), NOT_FOUND
+            return jsonify(macros.COMPANY_DNE), macros.NOT_FOUND
 
 
     def get_by_category(self, category):
         try:
-            dao = ServiceDAO()
+            dao = services.ServiceDAO()
             query = dao.get_by_category(category)
             result = self.build_map_dic(query)
-            return jsonify(Service=result), OK
+            return jsonify(Service=result), macros.OK
         except:
-            return jsonify(SERVICE_DNE), NOT_FOUND
+            return jsonify(macros.SERVICE_DNE), macros.NOT_FOUND

@@ -1,6 +1,6 @@
 from flask import jsonify
-from DAOs.companies import CompanyDAO
-from utils.macros import *
+from DAOs import companies
+from utils import macros
 
 class CompanyController:
     '''
@@ -26,32 +26,32 @@ class CompanyController:
 
     def get(self):
         try:
-            dao = CompanyDAO()
+            dao = companies.CompanyDAO()
             usr_list = dao.get()
             result_list = []
             for row in usr_list:
                 obj = self.build_map_dic(row)
                 result_list.append(obj)
-            return jsonify(Companies = result_list), OK
+            return jsonify(Companies = result_list), macros.OK
         except:
-            return jsonify(COMPANY_ERROR), NOT_FOUND
+            return jsonify(macros.COMPANY_ERROR), macros.NOT_FOUND
 
 
     def get_by_id(self, id):
         try:
-            dao = CompanyDAO()
+            dao = companies.CompanyDAO()
             query = dao.get_by_id(id)
             result = self.build_map_dic(query)
-            return jsonify(Company=result), OK
+            return jsonify(Company=result), macros.OK
         except:
-            return jsonify(COMPANY_DNE), NOT_FOUND
+            return jsonify(macros.COMPANY_DNE), macros.NOT_FOUND
     
 
     def get_by_cname(self, cname):
         try:
-            dao = CompanyDAO()
+            dao = companies.CompanyDAO()
             query = dao.get_by_cname(cname)
             result = self.build_map_dic(query)
-            return jsonify(Company=result), OK
+            return jsonify(Company=result), macros.OK
         except:
-            return jsonify(COMPANY_DNE), NOT_FOUND
+            return jsonify(macros.COMPANY_DNE), macros.NOT_FOUND

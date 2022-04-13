@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-from utils.app_handler import *
+from utils import app_handler as app
 
-UtilityRoutes()
+app.UtilityRoutes()
 
 if __name__ == '__main__':
-    APP.run(debug=True) #go to http://utilities-tracker.herokuapp.com/ to view the APP.
+    app.APP.run(debug=True) #go to http://utilities-tracker.herokuapp.com/ to view the APP.

@@ -16,7 +16,7 @@ class ClientDAO:
 
     def get(self):
         cursor = self.conn.cursor()
-        query = 'select * from clients natural inner join users;'
+        query = 'select * from users natural inner join clients;'
         cursor.execute(query)
         result = []
         for row in cursor:
@@ -27,7 +27,7 @@ class ClientDAO:
 
     def get_by_id(self, id):
         cursor = self.conn.cursor()
-        query = 'select * from clients natural inner join users where id = %s;'
+        query = 'select * from users natural inner join clients where id = %s;'
         cursor.execute(query, ([id]))
         result = cursor.fetchone()
         self.conn.commit()
@@ -36,7 +36,7 @@ class ClientDAO:
 
     def get_by_uname(self, uname):
         cursor = self.conn.cursor()
-        query = 'select * from clients natural inner join users where uname =  %s;'
+        query = 'select * from users natural inner join clients where uname =  %s;'
         cursor.execute(query, ([uname]))
         result = cursor.fetchone()
         self.conn.commit()
@@ -45,7 +45,7 @@ class ClientDAO:
 
     def get_by_email(self, email):
         cursor = self.conn.cursor()
-        query = 'select * from clients natural inner join users where email =  %s;'
+        query = 'select * from users natural inner join clients where email =  %s;'
         cursor.execute(query, ([email]))
         result = cursor.fetchone()
         self.conn.commit()

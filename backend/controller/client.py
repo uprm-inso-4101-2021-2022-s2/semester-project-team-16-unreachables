@@ -1,6 +1,6 @@
 from flask import jsonify
-from DAOs.client import ClientDAO
-from utils.macros import *
+from DAOs import client
+from utils import macros
 
 class ClientController:
     '''
@@ -36,42 +36,42 @@ class ClientController:
 
     def get(self):
         try:
-            dao = ClientDAO()
+            dao = client.ClientDAO()
             query = dao.get()
             result_list = []
             for row in query:
                 obj = self.build_map_dic(row)
                 result_list.append(obj)
-            return jsonify(Clients = result_list), OK
+            return jsonify(Clients = result_list), macros.OK
         except:
-            return jsonify(CLIENT_ERROR), NOT_FOUND
+            return jsonify(macros.CLIENT_ERROR), macros.NOT_FOUND
 
 
     def get_by_id(self, id):
         try:
-            dao = ClientDAO()
+            dao = client.ClientDAO()
             query = dao.get_by_id(id)
             result = self.build_map_dic(query)
-            return jsonify(Client=result), OK
+            return jsonify(Client=result), macros.OK
         except:
-            return jsonify(CLIENT_DNE), NOT_FOUND
+            return jsonify(macros.CLIENT_DNE), macros.NOT_FOUND
     
 
     def get_by_uname(self, uname):
         try:
-            dao = ClientDAO()
+            dao = client.ClientDAO()
             query = dao.get_by_uname(uname)
             result = self.build_map_dic(query)
-            return jsonify(Client=result), OK
+            return jsonify(Client=result), macros.OK
         except:
-            return jsonify(CLIENT_DNE), NOT_FOUND
+            return jsonify(macros.CLIENT_DNE), macros.NOT_FOUND
 
 
     def get_by_email(self, email):
         try:
-            dao = ClientDAO()
+            dao = client.ClientDAO()
             query = dao.get_by_email(email)
             result = self.build_map_dic(query)
-            return jsonify(Client=result), OK
+            return jsonify(Client=result), macros.OK
         except:
-            return jsonify(USR_DNE), NOT_FOUND
+            return jsonify(macros.USR_DNE), macros.NOT_FOUND

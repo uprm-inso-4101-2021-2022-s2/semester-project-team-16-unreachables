@@ -1,7 +1,7 @@
 from flask import jsonify
-from DAOs.report import ReportDAO
-from DAOs.user import UserDAO
-from utils.macros import *
+from DAOs import report
+from DAOs import user
+from utils import macros
 
 
 class ReportController:
@@ -32,32 +32,32 @@ class ReportController:
 
     def get(self):
         try:
-            dao = ReportDAO()
+            dao = report.ReportDAO()
             query = dao.get()
             result_list = []
             for row in query:
                 obj = self.build_map_dic(row)
                 result_list.append(obj)
-            return jsonify(Reports = result_list)
+            return jsonify(Reports = result_list), macros.OK
         except:
-            return jsonify(REPORT_ERROR), NOT_FOUND
+            return jsonify(macros.REPORT_ERROR), macros.NOT_FOUND
 
 
     def get_by_id(self, id):
         try:
-            dao = ReportDAO()
+            dao = report.ReportDAO()
             query = dao.get_by_id(id)
             result = self.build_map_dic(query)
-            return jsonify(Report=result), OK
+            return jsonify(Report=result), macros.OK
         except:
-            return jsonify(REPORT_DNE), NOT_FOUND
+            return jsonify(macros.REPORT_DNE), macros.NOT_FOUND
 
 
     def get_by_mun(self, mun):
         try:
-            dao = ReportDAO()
+            dao = report.ReportDAO()
             query = dao.get_by_mun(mun)
             result = self.build_map_dic(query)
-            return jsonify(User=result), OK
+            return jsonify(User=result), macros.OK
         except:
-            return jsonify(USR_DNE), NOT_FOUND
+            return jsonify(macros.USR_DNE), macros.NOT_FOUND

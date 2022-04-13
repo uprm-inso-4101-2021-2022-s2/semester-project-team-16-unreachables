@@ -1,6 +1,6 @@
 from flask import jsonify
-from DAOs.employee import EmployeeDAO
-from utils.macros import *
+from DAOs import employee
+from utils import macros
 
 class EmployeeController:
     '''
@@ -40,42 +40,42 @@ class EmployeeController:
 
     def get(self):
         try:
-            dao = EmployeeDAO()
+            dao = employee.EmployeeDAO()
             query = dao.get()
             result_list = []
             for row in query:
                 obj = self.build_map_dic(row)
                 result_list.append(obj)
-            return jsonify(Employees = result_list), OK
+            return jsonify(Employees = result_list), macros.OK
         except:
-            return jsonify(EMPLOYEE_ERROR), NOT_FOUND
+            return jsonify(macros.EMPLOYEE_ERROR), macros.NOT_FOUND
 
 
     def get_by_id(self, id):
         try:
-            dao = EmployeeDAO()
+            dao = employee.EmployeeDAO()
             query = dao.get_by_id(id)
             result = self.build_map_dic(query)
-            return jsonify(Employee=result), OK
+            return jsonify(Employee=result), macros.OK
         except:
-            return jsonify(EMPLOYEE_DNE), NOT_FOUND
+            return jsonify(macros.EMPLOYEE_DNE), macros.NOT_FOUND
     
 
     def get_by_uname(self, uname):
         try:
-            dao = EmployeeDAO()
+            dao = employee.EmployeeDAO()
             query = dao.get_by_uname(uname)
             result = self.build_map_dic(query)
-            return jsonify(Employee=result), OK
+            return jsonify(Employee=result), macros.OK
         except:
-            return jsonify(EMPLOYEE_DNE), NOT_FOUND
+            return jsonify(macros.EMPLOYEE_DNE), macros.NOT_FOUND
 
 
     def get_by_email(self, email):
         try:
-            dao = EmployeeDAO()
+            dao = employee.EmployeeDAO()
             query = dao.get_by_email(email)
             result = self.build_map_dic(query)
-            return jsonify(Employee=result), OK
+            return jsonify(Employee=result), macros.OK
         except:
-            return jsonify(EMPLOYEE_DNE), NOT_FOUND
+            return jsonify(macros.EMPLOYEE_DNE), macros.NOT_FOUND

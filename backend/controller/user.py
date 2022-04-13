@@ -1,6 +1,6 @@
 from flask import jsonify
-from DAOs.user import UserDAO
-from utils.macros import *
+from DAOs import user
+from utils import macros
 
 class UserController:
 
@@ -38,42 +38,42 @@ class UserController:
 
     def get(self):
         try:
-            dao = UserDAO()
+            dao = user.UserDAO()
             usr_list = dao.get()
             result_list = []
             for row in usr_list:
                 obj = self.build_map_dic(row)
                 result_list.append(obj)
-            return jsonify(Users = result_list), OK
+            return jsonify(Users = result_list), macros.OK
         except:
-            return jsonify(USR_ERROR), NOT_FOUND
+            return jsonify(macros.USR_ERROR), macros.NOT_FOUND
 
 
     def get_by_id(self, id):
         try:
-            dao = UserDAO()
+            dao = macros.UserDAO()
             query = dao.get_by_id(id)
             result = self.build_map_dic(query)
-            return jsonify(User=result), OK
+            return jsonify(User=result), macros.OK
         except:
-            return jsonify(USR_DNE), NOT_FOUND
+            return jsonify(macros.USR_DNE), macros.NOT_FOUND
     
 
     def get_by_uname(self, uname):
         try:
-            dao = UserDAO()
+            dao = macros.UserDAO()
             query = dao.get_by_uname(uname)
             result = self.build_map_dic(query)
-            return jsonify(User=result), OK
+            return jsonify(User=result), macros.OK
         except:
-            return jsonify(USR_DNE), NOT_FOUND
+            return jsonify(macros.USR_DNE), macros.NOT_FOUND
 
 
     def get_by_email(self, email):
         try:
-            dao = UserDAO()
+            dao = user.UserDAO()
             query = dao.get_by_email(email)
             result = self.build_map_dic(query)
-            return jsonify(User=result), OK
+            return jsonify(User=result), macros.OK
         except:
-            return jsonify(USR_DNE), NOT_FOUND
+            return jsonify(macros.USR_DNE), macros.NOT_FOUND

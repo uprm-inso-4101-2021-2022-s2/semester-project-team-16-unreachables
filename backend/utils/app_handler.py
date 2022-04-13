@@ -1,14 +1,15 @@
 from utils.app_imports import *
 
 APP = Flask(__name__)
+APP.config['JSON_SORT_KEYS'] = False
 CORS(APP)
 
-_users = UserController()
-_clients = ClientController()
-_companies = CompanyController()
-_employees = EmployeeController()
-_reports = ReportController()
-_services = ServiceController()
+_users = user.UserController()
+_clients = client.ClientController()
+_companies = companies.CompanyController()
+_employees = employee.EmployeeController()
+_reports = report.ReportController()
+_services = services.ServiceController()
 
 
 class UtilityRoutes:
@@ -38,7 +39,7 @@ class UtilityRoutes:
     def test():
         try:
             if request.method == GET:
-                return TestController().getTest()
+                return test.TestController().getTest()
         except:
             return jsonify(NOT_ALLOWED_TXT), NOT_ALLOWED
 
