@@ -58,6 +58,6 @@ class ReportController:
             dao = report.ReportDAO()
             query = dao.get_by_mun(mun)
             result = self.build_map_dic(query)
-            return jsonify(User=result), macros.OK
+            return jsonify(Report=result), macros.OK
         except:
-            return jsonify(macros.USR_DNE), macros.NOT_FOUND
+            return jsonify(macros.REPORT_DNE), macros.NOT_FOUND

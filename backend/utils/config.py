@@ -1,3 +1,11 @@
+# # local config 
+# pg_config = {
+#     'dbname':'unreachables_db',
+#     'user':'unreachables_main',
+#     'password':'TEAM16DB%9Rbr2X4aR',
+#     'host':'localhost',
+#     'port':8083
+# }
 
 # Heroku config 
 pg_config = {

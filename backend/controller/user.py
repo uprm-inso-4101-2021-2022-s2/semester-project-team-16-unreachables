@@ -15,14 +15,13 @@ class UserController:
         result['uage'] = row[6]
         result['gender'] = row[7]
         result['phone'] = row[8]
-        result['address'] = row[9]
+        result['user_address'] = row[9]
         result['created'] = row[10]
         return result
 
 
-    def __build_attr_dic(self, id, fname, lname, email, uname, pword, uage, gender, phone, address, created):
+    def __build_attr_dic(self, fname, lname, email, uname, pword, uage, gender, phone, address, created):
         result = {}
-        result['id'] = id
         result['fname'] = fname
         result['lname'] = lname
         result['email'] = email
@@ -31,9 +30,28 @@ class UserController:
         result['uage'] = uage
         result['gender'] = gender
         result['phone'] = phone
-        result['address'] = address
+        result['user_address'] = address
         result['created'] = created
         return result
+
+
+    def post(self, json):
+        try:
+            fname = json['fname']
+            lname = json['lname']
+            email = json['email']
+            uname = json['uname']
+            pword = json['pword']
+            uage = json['uage']
+            gender = json['gender']
+            phone = json['phone']
+            address = json['user_address']
+            dao = user.UserDAO()
+            created = dao.post(fname, lname, email, uname, pword, uage, gender, phone, address)
+            result = self.__build_attr_dic(fname, lname, email, uname, pword, uage, gender, phone, address, created)
+            return jsonify(User = result), macros.CREATED
+        except:
+            return jsonify(macros.USR_ERROR), macros.NOT_FOUND
 
 
     def get(self):
@@ -51,7 +69,7 @@ class UserController:
 
     def get_by_id(self, id):
         try:
-            dao = macros.UserDAO()
+            dao = user.UserDAO()
             query = dao.get_by_id(id)
             result = self.build_map_dic(query)
             return jsonify(User=result), macros.OK
@@ -61,7 +79,7 @@ class UserController:
 
     def get_by_uname(self, uname):
         try:
-            dao = macros.UserDAO()
+            dao = user.UserDAO()
             query = dao.get_by_uname(uname)
             result = self.build_map_dic(query)
             return jsonify(User=result), macros.OK

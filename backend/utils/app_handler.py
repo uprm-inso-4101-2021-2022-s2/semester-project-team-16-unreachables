@@ -49,7 +49,7 @@ class UtilityRoutes:
     def users(): # aka 'register' route
         try:
             if request.method == POST:
-                return _users.create(request.json)
+                return _users.post(request.json)
             elif request.method == GET:
                 return _users.get()
         except:
@@ -106,7 +106,7 @@ class UtilityRoutes:
     def clients(): 
         try:
             if request.method == POST:
-                return _clients.create(request.json)
+                return _clients.post(request.json)
             elif request.method == GET:
                 return _clients.get()
         except:
@@ -163,7 +163,7 @@ class UtilityRoutes:
     def companies(): 
         try:
             if request.method == POST:
-                return _companies.create(request.json)
+                return _companies.post(request.json)
             elif request.method == GET:
                 return _companies.get()
         except:
@@ -205,7 +205,7 @@ class UtilityRoutes:
     def employees(): 
         try:
             if request.method == POST:
-                return _employees.create(request.json)
+                return _employees.post(request.json)
             elif request.method == GET:
                 return _employees.get()
         except:
@@ -281,7 +281,7 @@ class UtilityRoutes:
             return jsonify(NOT_ALLOWED_TXT), NOT_ALLOWED
 
 
-    @APP.route('/reports/municipality/<string:municipality>', methods=['GET','PUT','DELETE'])
+    @APP.route('/reports/municipality/<string:mun>', methods=['GET','PUT','DELETE'])
     @cross_origin(headers=["Content-Type", "Authorization"])
     def report_by_mun(mun):
         try:
@@ -301,7 +301,7 @@ class UtilityRoutes:
     def services(): 
         try:
             if request.method == POST:
-                return _services.create(request.json)
+                return _services.post(request.json)
             elif request.method == GET:
                 return _services.get()
         except:

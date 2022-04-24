@@ -14,6 +14,16 @@ class UserDAO:
         self.conn = psycopg2.connect(connection_url)
 
 
+    def post(self, fname, lname, email, uname, pword, uage, gender, phone, adress):        
+        cursor = self.conn.cursor()
+        query = ('insert into users(fname, lname, email, uname, pword, uage, gender, phone, user_address)' \
+                      'values (%s, %s, %s, %s, %s, %s, %s, %s, %s) returning created;')
+        cursor.execute(query, (fname, lname, email, uname, pword, uage, gender, phone, adress))
+        uid = cursor.fetchone()[0]
+        self.conn.commit()
+        return uid
+
+
     def get(self):
         cursor = self.conn.cursor()
         query = 'select * from users;'
