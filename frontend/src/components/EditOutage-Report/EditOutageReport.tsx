@@ -1,14 +1,18 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import { useAuth0 } from '@auth0/auth0-react';
-import  LoginButton  from '../LoginButton/LoginButton';
+import ViewOutageReport from '../viewOutageReport/ViewOutageReport';
+const loginStyle = { display: "flex",
+    alignSelf: "center",
+    alignText: "center",
+}
+function EditOutageReport(props: { isEmployee: boolean; }) {
+    const isEmployee = props.isEmployee;
 
-function CreateOutageReport() {
-    const { isAuthenticated } = useAuth0();
-    if  (isAuthenticated){
+    if  (isEmployee){
         return (
             <Form>
+                <h1>Editing Report</h1>
                  <Form.Group className="mb-3 mx-3" controlId="reportService">
                     <Form.Label>Affected Service</Form.Label>
                     <Form.Control type="text" placeholder="ex: Water, Electricity, Internet" />
@@ -32,23 +36,29 @@ function CreateOutageReport() {
                     <Form.Label>Location of Outage</Form.Label>
                     <Form.Control type="text" placeholder={`ex: 33.3213123,98.32561223`} />
                 </Form.Group>
+
+                <Form.Group className=" mb-3 mx-3" controlId="reportLocation">
+                    <Form.Label>Cause</Form.Label>
+                    <Form.Control type="text" placeholder={`ex: 33.3213123,98.32561223`} />
+                </Form.Group>
+
+                <Form.Group className=" mb-3 mx-3" controlId="reportLocation">
+                    <Form.Label>Status</Form.Label>
+                    <Form.Control type="text" placeholder={`ex: 33.3213123,98.32561223`} />
+                </Form.Group>
+
         
         
-                <Button variant="primary" type="submit" href='/table'>
-                    Submit
+                <Button variant="primary" type="submit">
+                    Update
                 </Button>
             </Form>
           )
     }
     else{
-        return <>
-            <h3>
-                Please Log In to Create an Outage Report
-             </h3>
-             <LoginButton />
-        </>
+        return <ViewOutageReport />
     }
 
 }
 
-export default CreateOutageReport
+export default EditOutageReport

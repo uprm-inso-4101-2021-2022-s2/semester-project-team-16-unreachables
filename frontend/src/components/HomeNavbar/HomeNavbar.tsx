@@ -27,7 +27,7 @@ function HomeNavbar() {
                     <NavDropdown.Item href="/">Report Outage</NavDropdown.Item>
                     <NavDropdown.Item href="/map">Outage Map</NavDropdown.Item>
                     <NavDropdown.Item href="/table">Outage Table</NavDropdown.Item>
-                    <NavDropdown.Item href="/contact">Contact Us</NavDropdown.Item>   
+                    <NavDropdown.Item href="/view">Contact Us</NavDropdown.Item>   
                 </NavDropdown>
             </Nav>
             </Navbar.Collapse>

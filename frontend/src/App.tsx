@@ -11,9 +11,11 @@ import {
     Route,
     BrowserRouter
   } from "react-router-dom";
-
+import { ViewOutageReport } from './components/viewOutageReport/ViewOutageReport';
+import EditOutageReport from './components/EditOutage-Report/EditOutageReport';
 function App() {
     const { isLoading } = useAuth0();
+    const props = {isEmployee:true};
     if (isLoading){
         return <div>Loading...</div>
     } else{
@@ -26,6 +28,7 @@ function App() {
                     <Routes>
                         <Route path='/' element={<CreateOutageReport />}/>
                         <Route path='/table' element={<OutageReportTable />}/>
+                        <Route path='/view' element={<EditOutageReport isEmployee={true} />}/>
                     </Routes>
                     
                 </BrowserRouter>
